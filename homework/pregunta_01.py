@@ -12,5 +12,13 @@ def pregunta_01():
 
     Rta/
     214
-
     """
+    ruta = "files/input/data.csv"
+    suma = 0
+    with open(ruta, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+
+    data = [linea.strip().split("\t") for linea in lines]
+    for i in range(len(data)):
+        suma = suma + int(data[i][1])
+    return suma
