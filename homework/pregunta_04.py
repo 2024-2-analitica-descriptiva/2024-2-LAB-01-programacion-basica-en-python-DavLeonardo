@@ -26,3 +26,30 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    ruta = "files/input/data.csv"
+    fecha = []
+    listaMeses = []
+    sumaMeses = []
+    with open(ruta, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+    data = [linea.strip().split("\t") for linea in lines]
+
+    for i in range(len(data)):
+        linea = data[i][2].split("-")
+        fecha.append(linea)
+
+    #! lista de meses
+    for i in range(len(fecha)):
+        if not (fecha[i][1] in listaMeses):
+            listaMeses.append(fecha[i][1])
+            sumaMeses.append(0)
+    listaMeses.sort()
+
+    #! suma de los numeros
+    for i in range(len(listaMeses)):
+        for j in range(len(fecha)):
+            if fecha[j][1] == listaMeses[i]:
+                sumaMeses[i] += 1
+
+    out = list(zip(listaMeses, sumaMeses))
+    return out
