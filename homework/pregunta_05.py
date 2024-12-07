@@ -36,7 +36,7 @@ def pregunta_05():
             mesMax.append(-1)
     listaLetras.sort()
 
-    #! buscar minimos
+    #! buscar minimos y maximos
     for i in range(len(listaLetras)):
         for j in range(len(Letras)):
 
