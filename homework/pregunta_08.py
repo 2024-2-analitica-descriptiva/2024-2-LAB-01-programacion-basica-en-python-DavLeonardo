@@ -27,3 +27,37 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    ruta = "files/input/data.csv"
+    numeros = []
+    letras = []
+    numerosUnicos = []
+    with open(ruta, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+    data = [linea.strip().split("\t") for linea in lines]
+
+    for i in range(len(data)):
+        numeros.append(data[i][1])
+
+    for i in range(len(numeros)):
+        if not (numeros[i] in numerosUnicos):
+            numerosUnicos.append(numeros[i])
+    numerosUnicos.sort()
+
+    for i in range(len(numerosUnicos)):
+        x = []
+        for j in range(len(data)):
+            if numerosUnicos[i] == data[j][1]:
+                if not data[j][0] in x:
+                    x.append(data[j][0])
+        x.sort()
+        letras.append(x)
+
+    numerosUnicos = list(map(int, numerosUnicos))
+
+    out = list(
+        zip(
+            numerosUnicos,
+            letras,
+        )
+    )
+    return out
