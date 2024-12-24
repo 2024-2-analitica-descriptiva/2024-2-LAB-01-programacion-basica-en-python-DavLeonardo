@@ -16,3 +16,24 @@ def pregunta_11():
 
 
     """
+
+    RUTA = "files/input/data.csv"
+    out = {}
+    out_ordendado = {}
+
+    with open(RUTA, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+    data = [linea.strip().split("\t") for linea in lines]
+
+    for datos in data:
+        letras = datos[3].split(",")
+        for letra in letras:
+            if not letra in out:
+                out[letra] = int(datos[1])
+            else:
+                out[letra] += int(datos[1])
+
+    for clave in sorted(out):
+        out_ordendado[clave] = out[clave]
+
+    return out_ordendado

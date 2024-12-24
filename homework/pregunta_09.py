@@ -24,3 +24,29 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+    RUTA = "files/input/data.csv"
+
+    claves = []
+    lista = []
+    claves_clean = []
+    out = {}
+
+    with open(RUTA, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+    data = [linea.strip().split("\t") for linea in lines]
+
+    for i in enumerate(data):
+        lista.extend(i[1][4].split(","))
+
+    for i in lista:
+        x = i.split(":")[0]
+        claves_clean.append(x)
+    claves_clean.sort()
+
+    for claves in claves_clean:
+        if not claves in out:
+            out[claves] = 1
+        else:
+            out[claves] += 1
+
+    return out

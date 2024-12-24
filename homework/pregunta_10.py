@@ -20,3 +20,15 @@ def pregunta_10():
 
 
     """
+    RUTA = "files/input/data.csv"
+    out = []
+
+    with open(RUTA, "r", encoding="utf-8") as files:
+        lines = files.readlines()
+    data = [linea.strip().split("\t") for linea in lines]
+
+    for datos in data:
+        x = (datos[0], len(datos[3].split(",")), len(datos[4].split(",")))
+        out.append(x)
+
+    return out
